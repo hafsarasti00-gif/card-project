@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 90" role="img" aria-label="KM PACKAGES">
+  <defs>
+    <linearGradient id="kBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5BB0F0"/>
+      <stop offset="100%" stop-color="#1A6FD4"/>
+    </linearGradient>
+    <linearGradient id="mRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4D52"/>
+      <stop offset="100%" stop-color="#D42020"/>
+    </linearGradient>
+  </defs>
+  <text x="4" y="42" font-family="Arial Black, Arial, sans-serif" font-size="46" font-weight="900" fill="url(#kBlue)">k</text>
+  <text x="38" y="42" font-family="Arial Black, Arial, sans-serif" font-size="46" font-weight="900" fill="url(#mRed)">m</text>
+  <text x="4" y="68" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3" fill="#2C2416">PACKAGES</text>
+  <line x1="4" y1="74" x2="130" y2="74" stroke="#D42020" stroke-width="2"/>
+</svg>

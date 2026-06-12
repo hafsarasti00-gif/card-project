@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#E8D9C4"/>
+  <rect x="80" y="60" width="240" height="180" rx="4" fill="#C9A96E" stroke="#7A6040" stroke-width="3"/>
+  <line x1="80" y1="120" x2="320" y2="120" stroke="#7A6040" stroke-width="2"/>
+  <line x1="200" y1="60" x2="200" y2="240" stroke="#7A6040" stroke-width="2"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#7A6040">KM PACKAGES</text>
+</svg>

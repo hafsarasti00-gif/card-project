@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KM PACKAGES — Complete Packaging Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- Cart -->
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <div class="cart-header-left">
+        <div class="cart-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        </div>
+        <div>
+          <h2>Shopping Cart</h2>
+          <span class="cart-subtitle" id="cartSubtitle">0 items</span>
+        </div>
+      </div>
+      <button class="icon-btn" id="cartClose" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-body">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-box">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <p>No items yet</p>
+        <span>Add cardboard boxes to your cart</span>
+        <button class="btn-brown" id="cartShopLink">Browse Products</button>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" hidden>
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">Rs. 0</span></div>
+        <div class="summary-row total-row"><span>Total</span><strong id="cartTotal">Rs. 0</strong></div>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn">Place Order</button>
+      <button class="btn-text" id="clearCartBtn">Clear Cart</button>
+    </div>
+  </aside>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <h2 id="modalTitle">Add New Product</h2>
+      <button class="icon-btn modal-close-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <form class="modal-form" id="productForm">
+      <input type="hidden" id="editId" />
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" id="itemName" placeholder="e.g. Pizza Box 12 inch" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Price (Rs.)</label>
+          <input type="number" id="itemPrice" placeholder="50" min="1" required />
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="itemCategory" required>
+            <option value="corrugated">Corrugated</option>
+            <option value="printed">Printed</option>
+            <option value="shipping">Shipping</option>
+            <option value="retail">Retail</option>
+            <option value="custom">Custom</option>
+            <option value="industrial">Industrial</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" id="itemDesc" placeholder="Short description" />
+      </div>
+      <div class="form-group">
+        <label>Choose Image</label>
+        <select id="itemImage">
+          <option value="box1">Brown Kraft Boxes</option>
+          <option value="box2">Stacked Cartons</option>
+          <option value="box3">Warehouse Boxes</option>
+          <option value="box4">Shipping Packages</option>
+          <option value="box5">Cardboard Stack</option>
+          <option value="box6">Packaging Boxes</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-brown btn-full" id="modalSubmitBtn">Save Product</button>
+    </form>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="#home" class="brand-logo"><img src="assets/logo.svg" alt="KM PACKAGES" /></a>
+      <button class="icon-btn" id="sidebarClose"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <nav class="sidebar-nav">
+      <p class="nav-label">Menu</p>
+      <a href="#home" class="sidebar-link active">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <a href="#categories" class="sidebar-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="#products" class="sidebar-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        Products
+      </a>
+      <a href="#contact" class="sidebar-link">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Contact Us
+      </a>
+    </nav>
+    <div class="sidebar-cats">
+      <p class="nav-label">Categories</p>
+      <button class="cat-pill" data-cat="corrugated">Corrugated</button>
+      <button class="cat-pill" data-cat="printed">Printed</button>
+      <button class="cat-pill" data-cat="shipping">Shipping</button>
+      <button class="cat-pill" data-cat="retail">Retail</button>
+      <button class="cat-pill" data-cat="custom">Custom</button>
+      <button class="cat-pill" data-cat="industrial">Industrial</button>
+    </div>
+    <div class="sidebar-footer">
+      <button type="button" class="btn-brown btn-full btn-call" data-phone="0300-9490436">Call Now</button>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+        <a href="#home" class="brand-logo brand-logo-header"><img src="assets/logo.svg" alt="KM PACKAGES" /></a>
+      </div>
+      <nav class="header-nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#contact" class="nav-link">Contact Us</a>
+      </nav>
+      <div class="header-right">
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button type="button" class="btn-brown btn-sm btn-call" data-phone="0300-9490436">Call Now</button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div class="hero-text">
+          <span class="hero-tag" id="heroTag">Premium Packaging</span>
+          <h1 id="heroTitle">Premium Corrugated<br>Cardboard Boxes</h1>
+          <p id="heroDesc">Manufacture &amp; printer of corrugated boxes. Quality packaging made in Lahore.</p>
+          <div class="hero-btns">
+            <div class="dropdown-wrap" id="categoryDropdown">
+              <button class="dropdown-btn" id="dropdownTrigger"><span id="dropdownLabel">Select Category</span> ▾</button>
+              <ul class="dropdown-list" id="dropdownMenu">
+                <li data-value="corrugated">Corrugated Boxes</li>
+                <li data-value="printed">Printed Boxes</li>
+                <li data-value="shipping">Shipping Cartons</li>
+                <li data-value="retail">Retail Packaging</li>
+                <li data-value="custom">Custom Solutions</li>
+                <li data-value="industrial">Industrial Cartons</li>
+              </ul>
+            </div>
+            <a href="#products" class="btn-brown">Shop Now</a>
+          </div>
+          <div class="hero-rating"><span class="stars">★★★★★</span><span>4.9 rating · 500+ clients</span></div>
+        </div>
+        <div class="hero-slider-area">
+          <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide active">
+              <div class="collage-frame">
+                <div class="collage-cell"><img src="assets/images/box1.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box7.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box3.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box6.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+              </div>
+            </div>
+            <div class="hero-slide">
+              <div class="collage-frame">
+                <div class="collage-cell"><img src="assets/images/box22.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box23.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box21.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box11.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+              </div>
+            </div>
+            <div class="hero-slide">
+              <div class="collage-frame">
+                <div class="collage-cell"><img src="assets/images/box12.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box13.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box16.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+                <div class="collage-cell"><img src="assets/images/box17.jpeg" alt="Boxes" onerror="this.src='assets/images/placeholder.svg'" /></div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-nav">
+            <button class="slider-arrow" id="sliderPrev">‹</button>
+            <div class="slider-dots">
+              <button class="dot active" data-i="0"></button>
+              <button class="dot" data-i="1"></button>
+              <button class="dot" data-i="2"></button>
+            </div>
+            <button class="slider-arrow" id="sliderNext">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><strong>15+</strong><span>Years</span></div>
+      <div class="stat"><strong>500+</strong><span>Clients</span></div>
+      <div class="stat"><strong>50+</strong><span>Varieties</span></div>
+      <div class="stat"><strong>24/7</strong><span>Support</span></div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-head"><span class="label">Browse</span><h2>Packaging Categories</h2></div>
+      <div class="cat-grid">
+        <article class="cat-card" data-cat="corrugated">
+          <img src="assets/images/box1.jpeg" alt="Corrugated Boxes" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Corrugated Boxes</h3><p>Multi-layer kraft cardboard</p></div>
+        </article>
+        <article class="cat-card" data-cat="printed">
+          <img src="assets/images/box10.jpeg" alt="Printed Boxes" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Printed Boxes</h3><p>Custom brand printing</p></div>
+        </article>
+        <article class="cat-card" data-cat="shipping">
+          <img src="assets/images/box3.jpeg" alt="Shipping Cartons" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Shipping Cartons</h3><p>Heavy-duty protection</p></div>
+        </article>
+        <article class="cat-card" data-cat="retail">
+          <img src="assets/images/box4.jpeg" alt="Retail Packaging" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Retail Packaging</h3><p>Display-ready boxes</p></div>
+        </article>
+        <article class="cat-card" data-cat="custom">
+          <img src="assets/images/box5.jpeg" alt="Custom Solutions" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Custom Solutions</h3><p>Any size &amp; shape</p></div>
+        </article>
+        <article class="cat-card" data-cat="industrial">
+          <img src="assets/images/box6.jpeg" alt="Industrial Cartons" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="cat-card-body"><h3>Industrial Cartons</h3><p>Large factory boxes</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="products">
+      <div class="admin-bar">
+        <div class="admin-bar-info">
+          <strong></strong>
+          <span></span>
+        </div>
+        <button type="button" class="btn-crud btn-crud-add" id="btnCreate">+ Add Product</button>
+      </div>
+      <div class="section-head">
+        <span class="label">Shop</span>
+        <h2>Our Products</h2>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="corrugated">Corrugated</button>
+        <button class="filter-btn" data-filter="printed">Printed</button>
+        <button class="filter-btn" data-filter="shipping">Shipping</button>
+        <button class="filter-btn" data-filter="retail">Retail</button>
+        <button class="filter-btn" data-filter="custom">Custom</button>
+        <button class="filter-btn" data-filter="industrial">Industrial</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-wrap">
+        <div class="about-img-side">
+          <img src="assets/images/factory.jpg" alt="Our Factory" onerror="this.src='assets/images/placeholder.svg'" />
+          <div class="about-badge">15+ Years</div>
+        </div>
+        <div class="about-text">
+          <span class="label">About Us</span>
+          <h2>The Name of Complete Packaging Solutions</h2>
+          <p>KM PACKAGES manufactures and prints corrugated boxes in Lahore. We deliver durable, eco-friendly packaging for businesses across Pakistan.</p>
+          <ul class="check-list">
+            <li>In-house manufacturing &amp; printing</li>
+            <li>Custom sizes and die-cut designs</li>
+            <li>Bulk orders at best prices</li>
+            <li>Fast nationwide delivery</li>
+          </ul>
+          <div class="person-card">
+            <strong>Muhammad Naeem</strong>
+            <span>Sales &amp; Marketing Manager</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="contact-wrap">
+        <div class="contact-left">
+          <span class="label">Contact Us</span>
+          <h2>Get a Free Quote</h2>
+          <div class="contact-list">
+            <div class="contact-row">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <div>
+                <button type="button" class="link-btn btn-call" data-phone="0300-9490436">0300-9490436</button>
+                <button type="button" class="link-btn btn-call" data-phone="0304-4433116">0304-4433116</button>
+              </div>
+            </div>
+            <div class="contact-row">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div><a href="mailto:kmpackages@gmail.com">kmpackages@gmail.com</a></div>
+            </div>
+            <div class="contact-row">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>Faiz Pur Stop, Bhulian Wala Road,<br>Near China Chalghoza Factory,<br>Jaranwala Road, Lahore</div>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="tel" id="phone" placeholder="Phone Number" required />
+          <select id="category">
+            <option value="">Select Category</option>
+            <option value="corrugated">Corrugated Boxes</option>
+            <option value="printed">Printed Boxes</option>
+            <option value="shipping">Shipping Cartons</option>
+            <option value="retail">Retail Packaging</option>
+            <option value="custom">Custom Solutions</option>
+            <option value="industrial">Industrial Cartons</option>
+          </select>
+          <textarea id="message" rows="3" placeholder="Your requirements..."></textarea>
+          <button type="submit" class="btn-brown btn-full">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <img src="assets/logo.svg" alt="KM PACKAGES" class="footer-logo" />
+      <p>Manufacture &amp; Printer of Corrugated Boxes · Lahore, Pakistan</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact Us</a>
+        <button type="button" class="link-btn btn-call" data-phone="0300-9490436">0300-9490436</button>
+      </div>
+      <p class="copy">© 2026 KM PACKAGES</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="images.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
